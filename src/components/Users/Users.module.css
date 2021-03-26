@@ -1,0 +1,57 @@
+.usersWrapper {
+    display: flex;
+    margin-left: 40px;
+    width: 700px;
+    margin-bottom: 20px;
+}
+.usersLeft {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    margin-right: 20px;
+}
+.usersRight {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid rgb(150, 152, 156);
+    padding: 20px;
+    max-height: 80px;
+    border-radius: 20px;
+}
+.usersInformation {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.usersName {
+    display: flex;
+    font-weight: 700;
+    color: #464646;
+}
+.usersFirstName {
+    padding-right: 10px;
+}
+.usersFollowButton button {
+    width: 100px;
+    background: rgb(49, 146, 49);
+    color: white;
+    font-size: 20px;
+    border: none;
+}
+.usersFollowButton button:focus {
+    outline: none;
+}
+.usersFollowButton button:active {
+    outline: 1px solid black;
+}
+.usersLocation {
+    text-align: right;
+}
+.usersAvatar img {
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
