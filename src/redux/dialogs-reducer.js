@@ -1,4 +1,4 @@
-import { act } from "react-dom/test-utils"
+
 const SEND_MASSAGE = 'SEND-MASSAGE'
 const UPDATE_NEW_MASSAGE_BODY = 'UPDATE-NEW-MASSAGE-BODY'
 
@@ -23,13 +23,18 @@ const dialogsReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case SEND_MASSAGE:
 			let body = state.newMassageBody
-			state.massages.push({ id: 6, massage: body })
-			state.newMassageBody = ''
-			return state
+			return {
+				...state,
+				massages: [...state.massages, { id: 6, massage: body }],
+				newMassageBody: ''
+			}
 
 		case UPDATE_NEW_MASSAGE_BODY:
-			state.newMassageBody = action.body
-			return state
+
+			return {
+				...state,
+				newMassageBody: action.body
+			}
 		default:
 			return state
 

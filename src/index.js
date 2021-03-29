@@ -4,24 +4,26 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './redux/redux-store'
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 
 
 let renderEntireTree = (state) => {
 	ReactDOM.render(
 		<React.StrictMode>
-			<App state={store.getState()} dispatch={store.dispatch.bind(store)} />
-		</React.StrictMode>,
+			<BrowserRouter>
+				<Provider store={store}>
+					<App />
+				</Provider>
+			</BrowserRouter>
+		</React.StrictMode >,
 		document.getElementById('root')
 	);
 }
 
 renderEntireTree(store.getState())
-store.subscribe(() => {
-	let state = store.getState()
-	renderEntireTree(state)
 
-})
 
 
 
@@ -29,3 +31,6 @@ store.subscribe(() => {
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
+//<App state={store.getState()} dispatch={store.dispatch.bind(store)} store={store} />
