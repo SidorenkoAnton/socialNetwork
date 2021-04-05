@@ -1,3 +1,11 @@
+.usersPageWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px 0px 80px 0px;
+}
+
 .usersWrapper {
     display: flex;
     margin-left: 40px;
@@ -54,4 +62,52 @@
     width: 100px;
     border-radius: 50%;
     margin-bottom: 5px;
+}
+
+.bthShowMore {
+    background: rgb(49, 146, 49);
+    color: white;
+    font-size: 20px;
+    border: none;
+    width: 300px;
+    height: 40px;
+    align-self: center;
+}
+.bthShowMore:focus {
+    outline: none;
+}
+.bthShowMore:active {
+    outline: 1px solid black;
+}
+
+.switchPageButtonsRow {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+.paginationItem {
+    margin-right: 10px;
+    cursor: pointer;
+}
+.paginationItem:hover {
+    text-decoration: underline;
+}
+
+.paginationItemActive {
+    font-weight: bold;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.paginationSprad {
+    margin-right: 10px;
+}
+
+.paginationPrevios {
+    display: flex;
 }
