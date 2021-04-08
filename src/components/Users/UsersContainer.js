@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux"
-import { toggleFollowAC, setUsersAC, setCurrentTotalUsersCountAC, setCurrentPageAC } from "../../redux/users-reducer"
+import { toggleFollowAC, setUsersAC, setCurrentTotalUsersCountAC, setCurrentPageAC, TogleIsFetchingAC } from "../../redux/users-reducer"
 import Users from "./Users"
 import * as axios from 'axios'
 
@@ -9,8 +9,10 @@ import * as axios from 'axios'
 
 class UsersContainer extends React.Component {
     componentDidMount() {
+        this.props.TogleIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersOnPage}&page=${this.props.currentUsersPage}`)
             .then(response => {
+                this.props.TogleIsFetching(false)
                 this.props.setUsers(response.data.items)
                 this.props.setCurrentTotalUsersCount(response.data.totalCount)
             }
@@ -18,9 +20,11 @@ class UsersContainer extends React.Component {
     }
 
     onChangePage = (selectedPage) => {
+        this.props.TogleIsFetching(true)
         this.props.setCurrentPage(selectedPage)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersOnPage}&page=${selectedPage}`)
             .then(response => {
+                this.props.TogleIsFetching(false)
                 this.props.setUsers(response.data.items)
             })
     }
@@ -31,7 +35,8 @@ class UsersContainer extends React.Component {
             currentUsersPage={this.props.currentUsersPage}
             onChangePage={this.onChangePage}
             state={this.props.state}
-            toggleFollow={this.props.toggleFollow} />
+            toggleFollow={this.props.toggleFollow}
+            isFetching={this.props.isFetching} />
         )
 
     }
@@ -62,6 +67,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         setCurrentPage: (selectedPage) => {
             dispatch(setCurrentPageAC(selectedPage))
+        },
+        TogleIsFetching: (isFetching) => {
+            dispatch(TogleIsFetchingAC(isFetching))
         }
     }
 

@@ -2,6 +2,8 @@ import React from 'react'
 import s from './Users.module.css'
 import * as axios from 'axios'
 import userPhoto from './../../../src/assets/images/userPhoto.png'
+import Preloader from '../Common/Preloader/Preloader'
+
 
 
 let Users = (props) => {
@@ -35,7 +37,7 @@ let Users = (props) => {
                             <div className={props.currentUsersPage == num ? s.paginationItemActive : s.paginationItem} onClick={(e) => { props.onChangePage(arrPages.length) }}>{arrPages.length}</div>
                         </div>)}
             </div>
-            {
+            {props.state.isFetching ? <Preloader /> :
                 props.state.items.map(user => (
                     <div className={s.usersWrapper}>
                         <div className={s.usersLeft}>
@@ -74,27 +76,3 @@ let Users = (props) => {
 export default Users
 
 
-
-
-
-
-/* {arrPages.map(item => {
-    if (this.props.currentUsersPage <= 5 && item < 5) {
-        return (
-            <div className={this.props.currentUsersPage == item ? s.paginationItemActive : s.paginationItem} onClick={(e) => this.onChangePage(e.target.innerHTML)}>{item}</div>
-        )
-    }
-    else if (this.props.currentUsersPage > 5 && item <= this.props.currentUsersPage + 5 && item >= this.props.currentUsersPage - 5) {
-        for (let i = this.props.currentUsersPage - 5; i <= this.props.currentUsersPage + 5; i++) {
-            return (
-                <div className={this.props.currentUsersPage == item ? s.paginationItemActive : s.paginationItem} onClick={(e) => this.onChangePage(e.target.innerHTML)}> {item}</div>
-            )
-        }
-    }
-    else if (this.props.currentUsersPage >= pages && item >= pages) {
-        return (
-            <div >{item}</div>
-        )
-    }
-
-})} */
