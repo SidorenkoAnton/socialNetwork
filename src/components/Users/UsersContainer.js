@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux"
-import { toggleFollowAC, setUsersAC, setCurrentTotalUsersCountAC, setCurrentPageAC, TogleIsFetchingAC } from "../../redux/users-reducer"
+import { toggleFollow, setUsers, setCurrentTotalUsersCount, setCurrentPage, TogleIsFetching } from "../../redux/users-reducer"
 import Users from "./Users"
 import * as axios from 'axios'
 
@@ -39,6 +39,8 @@ class UsersContainer extends React.Component {
             isFetching={this.props.isFetching} />
         )
 
+
+
     }
 }
 
@@ -54,25 +56,7 @@ let mapStateToProps = (state) => {
 
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        toggleFollow: (userId) => {
-            dispatch(toggleFollowAC(userId))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentTotalUsersCount: (users) => {
-            dispatch(setCurrentTotalUsersCountAC(users))
-        },
-        setCurrentPage: (selectedPage) => {
-            dispatch(setCurrentPageAC(selectedPage))
-        },
-        TogleIsFetching: (isFetching) => {
-            dispatch(TogleIsFetchingAC(isFetching))
-        }
-    }
 
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default connect(mapStateToProps,
+    { toggleFollow, setUsers, setCurrentTotalUsersCount, setCurrentPage, TogleIsFetching })(UsersContainer)

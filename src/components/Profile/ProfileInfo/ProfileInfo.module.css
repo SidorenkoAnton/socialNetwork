@@ -1,3 +1,12 @@
 .descriptionBlock {
+	display: flex;
 	padding: 10px;
+}
+.descriptionBlock__avatar {
+	width: 200px;
+	height: 200px;
+	margin-right: 20px;
+}
+.descriptionBlock__about_item {
+	color: grey;
 }

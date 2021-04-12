@@ -1,8 +1,8 @@
 import React from 'react'
 import s from './Users.module.css'
-import * as axios from 'axios'
 import userPhoto from './../../../src/assets/images/userPhoto.png'
 import Preloader from '../Common/Preloader/Preloader'
+import { NavLink } from 'react-router-dom'
 
 
 
@@ -42,7 +42,9 @@ let Users = (props) => {
                     <div className={s.usersWrapper}>
                         <div className={s.usersLeft}>
                             <div className={s.usersAvatar}>
-                                <img src={user.photos.small ? user.photos.small : userPhoto} />
+                                <NavLink to={`/profile/${user.id}`}>
+                                    <img src={user.photos.small ? user.photos.small : userPhoto} />
+                                </NavLink>
                             </div>
                             <div className={s.usersFollowButton}>
                                 <button onClick={() => props.toggleFollow(user.id)}>{user.followed ? 'unfollow' : 'follow'}</button>
