@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from "react-redux"
-import { toggleFollow, setUsers, setCurrentTotalUsersCount, setCurrentPage, TogleIsFetching } from "../../redux/users-reducer"
+import { toggleFollow, setUsers, setCurrentTotalUsersCount, setCurrentPage, TogleIsFetching, toggleIsFetchingFollowing } from "../../redux/users-reducer"
 import Users from "./Users"
 import * as axios from 'axios'
+import { userAPI } from './../../api/userAPI'
 
 
 
@@ -10,7 +11,7 @@ import * as axios from 'axios'
 class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.TogleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersOnPage}&page=${this.props.currentUsersPage}`, { withCredentials: true })
+        userAPI.getUsers(this.props.usersOnPage, this.props.currentUsersPage)
             .then(response => {
                 this.props.TogleIsFetching(false)
                 this.props.setUsers(response.data.items)
@@ -22,7 +23,7 @@ class UsersContainer extends React.Component {
     onChangePage = (selectedPage) => {
         this.props.TogleIsFetching(true)
         this.props.setCurrentPage(selectedPage)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersOnPage}&page=${selectedPage}`, { withCredentials: true })
+        userAPI.getUsers(this.props.usersOnPage, selectedPage)
             .then(response => {
                 this.props.TogleIsFetching(false)
                 this.props.setUsers(response.data.items)
@@ -36,7 +37,10 @@ class UsersContainer extends React.Component {
             onChangePage={this.onChangePage}
             state={this.props.state}
             toggleFollow={this.props.toggleFollow}
-            isFetching={this.props.isFetching} />
+            isFetching={this.props.isFetching}
+            isFetchingFollowing={this.props.isFetchingFollowing}
+            toggleIsFetchingFollowing={this.props.toggleIsFetchingFollowing} />
+
         )
 
 
@@ -59,4 +63,4 @@ let mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps,
-    { toggleFollow, setUsers, setCurrentTotalUsersCount, setCurrentPage, TogleIsFetching })(UsersContainer)
+    { toggleFollow, setUsers, setCurrentTotalUsersCount, setCurrentPage, TogleIsFetching, toggleIsFetchingFollowing })(UsersContainer)

@@ -15,8 +15,6 @@ let Users = (props) => {
         arrPages.push(i)
     }
 
-
-
     return (
         <div className={s.usersPageWrapper} >
             <div className={s.switchPageButtonsRow}>
@@ -48,7 +46,8 @@ let Users = (props) => {
                                 </NavLink>
                             </div>
                             <div className={s.usersFollowButton}>
-                                <button onClick={() => {
+                                <button disabled={props.state.isFetchingFollowing.some(el => el == user.id)} onClick={() => {
+                                    props.toggleIsFetchingFollowing(user.id)
                                     if (!user.followed) {
                                         axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {},
                                             {
@@ -61,6 +60,7 @@ let Users = (props) => {
                                                 if (response.data.resultCode === 0) {
                                                     props.toggleFollow(user.id)
                                                 }
+
                                             }
                                             )
                                     }
