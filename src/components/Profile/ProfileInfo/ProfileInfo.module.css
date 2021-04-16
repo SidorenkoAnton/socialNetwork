@@ -7,6 +7,10 @@
 	height: 200px;
 	margin-right: 20px;
 }
+.descriptionBlock__abou {
+	display: flex;
+	flex-direction: column;
+}
 .descriptionBlock__about_item {
 	color: grey;
 }

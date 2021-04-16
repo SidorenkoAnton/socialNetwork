@@ -1,7 +1,17 @@
 .header {
 	grid-area: h;
 	background-color: green;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 .header img {
 	width: 50px;
+}
+.header__item {
+	padding-right: 20px;
+}
+.header__login a {
+	color: white;
+	text-decoration: none;
 }

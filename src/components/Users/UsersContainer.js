@@ -10,7 +10,7 @@ import * as axios from 'axios'
 class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.TogleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersOnPage}&page=${this.props.currentUsersPage}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersOnPage}&page=${this.props.currentUsersPage}`, { withCredentials: true })
             .then(response => {
                 this.props.TogleIsFetching(false)
                 this.props.setUsers(response.data.items)
@@ -22,7 +22,7 @@ class UsersContainer extends React.Component {
     onChangePage = (selectedPage) => {
         this.props.TogleIsFetching(true)
         this.props.setCurrentPage(selectedPage)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersOnPage}&page=${selectedPage}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersOnPage}&page=${selectedPage}`, { withCredentials: true })
             .then(response => {
                 this.props.TogleIsFetching(false)
                 this.props.setUsers(response.data.items)
