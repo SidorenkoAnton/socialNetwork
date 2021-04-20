@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux"
-import { toggleFollow, setUsers, setCurrentTotalUsersCount, setCurrentPage, TogleIsFetching, toggleIsFetchingFollowing } from "../../redux/users-reducer"
+import { toggleFollow, setUsers, setCurrentTotalUsersCount, setCurrentPage, TogleIsFetching, toggleIsFollowingProgress } from "../../redux/users-reducer"
 import Users from "./Users"
 import * as axios from 'axios'
 import { userAPI } from './../../api/userAPI'
@@ -38,8 +38,10 @@ class UsersContainer extends React.Component {
             state={this.props.state}
             toggleFollow={this.props.toggleFollow}
             isFetching={this.props.isFetching}
-            isFetchingFollowing={this.props.isFetchingFollowing}
-            toggleIsFetchingFollowing={this.props.toggleIsFetchingFollowing} />
+            toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
+            toggleFollowingProgress={this.props.toggleFollowingProgress}
+
+        />
 
         )
 
@@ -55,7 +57,9 @@ let mapStateToProps = (state) => {
         state: state.usersPage,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentUsersPage: state.usersPage.currentUsersPage,
-        usersOnPage: state.usersPage.usersOnPage
+        usersOnPage: state.usersPage.usersOnPage,
+        followingIsProgress: state.usersPage.followingIsProgress,
+        toggleFollowingProgress: state.usersPage.toggleFollowingProgress
     }
 
 }
@@ -63,4 +67,4 @@ let mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps,
-    { toggleFollow, setUsers, setCurrentTotalUsersCount, setCurrentPage, TogleIsFetching, toggleIsFetchingFollowing })(UsersContainer)
+    { toggleFollow, setUsers, setCurrentTotalUsersCount, setCurrentPage, TogleIsFetching, toggleIsFollowingProgress })(UsersContainer)

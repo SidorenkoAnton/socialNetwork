@@ -1,9 +1,11 @@
+import { act } from "react-dom/test-utils"
+
 const TOGGLE_FOLLOWED = 'TOGGLE-FOLLOWED'
 const SET_USERS = 'SET-USERS'
 const SET_CURRENT_TOTAL_USERS_COUNT = 'SET_CURRENT_TOTAL_USERS_COUNT'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
-const TOGGLE_IS_FETCHING_FOLLOWING = 'TOGGLE_IS_FETCHING_FOLLOWING'
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS'
 
 
 
@@ -14,7 +16,8 @@ let initialState = {
     totalUsersPage: 1,
     currentUsersPage: 1,
     isFetching: false,
-    isFetchingFollowing: []
+    followingIsProgress: false,
+    toggleFollowingProgress: []
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -51,10 +54,11 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 isFetching: action.isFetching
             }
-        case TOGGLE_IS_FETCHING_FOLLOWING:
+        case TOGGLE_IS_FOLLOWING_PROGRESS:
             return {
                 ...state,
-                isFetchingFollowing: [state.isFetchingFollowing.filter(el => el == action.isFetchingId), action.isFetchingId]
+                followingIsProgress: action.followingIsProgress,
+                toggleFollowingProgress: state.followingIsProgress ? state.toggleFollowingProgress.filter(id => id != action.isFetchingId) : [...state.toggleFollowingProgress, action.isFetchingId]
             }
         default:
             return state
@@ -84,8 +88,8 @@ export const TogleIsFetching = (isFetching) => {
     return { type: TOGGLE_IS_FETCHING, isFetching }
 }
 
-export const toggleIsFetchingFollowing = (isFetchingId) => {
-    return { type: TOGGLE_IS_FETCHING_FOLLOWING, isFetchingId }
+export const toggleIsFollowingProgress = (followingIsProgress, isFetchingId) => {
+    return { type: TOGGLE_IS_FOLLOWING_PROGRESS, followingIsProgress, isFetchingId }
 }
 
 
