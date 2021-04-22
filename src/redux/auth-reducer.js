@@ -1,3 +1,5 @@
+import { authAPI } from "../api/authAPI"
+
 const SET_AUTH_USER = 'SET_AUTH_USER'
 
 
@@ -29,6 +31,18 @@ const authReducer = (state = initialState, action) => {
 
 export const setAuthUser = ({ id, login, email }) => {
     return { type: SET_AUTH_USER, data: { id, login, email } }
+}
+
+export const getAndSetAuthUser = () => {
+    return dispatch => {
+        authAPI.setAuthUser()
+            .then(response => {
+                if (response.data.resultCode == 0) {
+                    dispatch(setAuthUser(response.data.data))
+                }
+            }
+            )
+    }
 }
 
 

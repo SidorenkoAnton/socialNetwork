@@ -48,40 +48,7 @@ let Users = (props) => {
                             </div>
                             <div className={s.usersFollowButton}>
                                 <button disabled={props.toggleFollowingProgress.some(el => el == user.id)} onClick={() => {
-                                    props.toggleIsFollowingProgress(true, user.id)
-                                    if (!user.followed) {
-                                        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {},
-                                            {
-                                                withCredentials: true,
-                                                headers: {
-                                                    'API-KEY': '030ecbf1-29d0-474d-af46-18c1b5417bda'
-                                                }
-                                            })
-                                            .then(response => {
-                                                if (response.data.resultCode === 0) {
-                                                    props.toggleFollow(user.id)
-                                                    props.toggleIsFollowingProgress(false, user.id)
-                                                }
-                                            }
-                                            )
-                                    }
-                                    if (user.followed) {
-                                        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                                            {
-                                                withCredentials: true,
-                                                headers: {
-                                                    'API-KEY': '030ecbf1-29d0-474d-af46-18c1b5417bda'
-                                                }
-                                            })
-                                            .then(response => {
-                                                if (response.data.resultCode === 0) {
-                                                    props.toggleFollow(user.id)
-                                                    props.toggleIsFollowingProgress(false, user.id)
-                                                }
-                                            }
-                                            )
-                                    }
-
+                                    props.toggleFollow(user.followed, user.id)
                                 }}>{user.followed ? 'unfollow' : 'follow'}</button>
                             </div>
                         </div>

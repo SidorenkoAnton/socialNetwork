@@ -1,6 +1,7 @@
 import { act } from "react-dom/test-utils"
+import { userAPI } from "../api/userAPI"
 
-const TOGGLE_FOLLOWED = 'TOGGLE-FOLLOWED'
+const TOGGLE_FOLLOWED_SUCESS = 'TOGGLE_FOLLOWED_SUCESS'
 const SET_USERS = 'SET-USERS'
 const SET_CURRENT_TOTAL_USERS_COUNT = 'SET_CURRENT_TOTAL_USERS_COUNT'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
@@ -23,7 +24,7 @@ let initialState = {
 const usersReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case TOGGLE_FOLLOWED:
+        case TOGGLE_FOLLOWED_SUCESS:
             return {
                 ...state,
                 items: state.items.map(user => {
@@ -67,8 +68,8 @@ const usersReducer = (state = initialState, action) => {
 }
 
 
-export const toggleFollow = (userId) => {
-    return { type: TOGGLE_FOLLOWED, userId }
+export const toggleFollowSucess = (userId) => {
+    return { type: TOGGLE_FOLLOWED_SUCESS, userId }
 }
 
 
@@ -90,6 +91,44 @@ export const TogleIsFetching = (isFetching) => {
 
 export const toggleIsFollowingProgress = (followingIsProgress, isFetchingId) => {
     return { type: TOGGLE_IS_FOLLOWING_PROGRESS, followingIsProgress, isFetchingId }
+}
+
+
+export const getUsers = (usersOnPage, currentUsersPage) => {
+    return (dispatch) => {
+        dispatch(TogleIsFetching(true))
+        userAPI.getUsers(usersOnPage, currentUsersPage)
+            .then(response => {
+                dispatch(TogleIsFetching(false))
+                dispatch(setCurrentTotalUsersCount(response.data.totalCount))
+                dispatch(setUsers(response.data.items))
+            })
+    }
+}
+
+export const toggleFollow = (userFollowed, userId) => {
+    return dispatch => {
+        dispatch(toggleIsFollowingProgress(true, userId))
+        userAPI.toggleFollow(userFollowed, userId)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(toggleFollowSucess(userId))
+                    dispatch(toggleIsFollowingProgress(false, userId))
+                }
+            }
+            )
+    }
+}
+
+export const changePage = (usersOnPage, selectedPage) => {
+    return dispatch => {
+
+        userAPI.getUsers(usersOnPage, selectedPage)
+            .then(response => {
+                dispatch(TogleIsFetching(false))
+                dispatch(setUsers(response.data.items))
+            })
+    }
 }
 
 
