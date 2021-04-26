@@ -32,8 +32,8 @@ let mapStateToProps = (state) => ({
 	profile: state.profilePage.profile,
 	isAuth: state.auth.isAuth
 
+
 })
 
-const withRedirect = withAuthRedirect(ProfileContainer)
-let profileContainerWithUserId = withRouter(withRedirect)
+
 export default compose(connect(mapStateToProps, { setUserProfile, getProfile }), withRouter, withAuthRedirect)(ProfileContainer)
