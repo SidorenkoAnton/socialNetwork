@@ -3,7 +3,7 @@ import s from './Users.module.css'
 import userPhoto from './../../../src/assets/images/userPhoto.png'
 import Preloader from '../Common/Preloader/Preloader'
 import { NavLink } from 'react-router-dom'
-import axios from 'axios'
+
 
 
 

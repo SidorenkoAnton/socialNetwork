@@ -1,9 +1,7 @@
 import React from 'react'
 import { connect } from "react-redux"
-import { toggleFollowSucess, setUsers, setCurrentTotalUsersCount, setCurrentPage, TogleIsFetching, toggleIsFollowingProgress, getUsers, toggleFollow, changePage } from "../../redux/users-reducer"
+import { toggleFollowSucess, setCurrentPage, TogleIsFetching, toggleIsFollowingProgress, getUsers, toggleFollow, changePage } from "../../redux/users-reducer"
 import Users from "./Users"
-import * as axios from 'axios'
-import { userAPI } from './../../api/userAPI'
 
 
 
@@ -31,13 +29,8 @@ class UsersContainer extends React.Component {
             toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
             toggleFollowingProgress={this.props.toggleFollowingProgress}
             toggleFollow={this.props.toggleFollow}
-
         />
-
         )
-
-
-
     }
 }
 
@@ -58,4 +51,4 @@ let mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps,
-    { toggleFollowSucess, setUsers, setCurrentTotalUsersCount, setCurrentPage, TogleIsFetching, toggleIsFollowingProgress, getUsers, toggleFollow, changePage })(UsersContainer)
+    { toggleFollowSucess, setCurrentPage, TogleIsFetching, toggleIsFollowingProgress, getUsers, toggleFollow, changePage })(UsersContainer)

@@ -26,7 +26,6 @@ const Dialogs = (props) => {
 		props.sandMassageClick()
 	}
 
-	if (!props.isAuth) return <Redirect to='/login' />
 
 	return (
 		<div className={s.dialogs}>
