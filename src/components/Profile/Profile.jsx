@@ -7,7 +7,7 @@ const Profile = (props) => {
 	if (!props.isAuth) return <Redirect to='/login' />
 	return (
 		<div >
-			<ProfileInfo profile={props.profile} />
+			<ProfileInfo profile={props.profile} getStatus={props.getStatus} status={props.status} updateStatus={props.updateStatus} />
 			<MyPostsContainer />
 		</div >
 	)

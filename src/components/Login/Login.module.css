@@ -1,0 +1,7 @@
+.loginForm__item {
+	margin-bottom: 10px;
+}
+
+.loginForm {
+	display: flex;
+}
