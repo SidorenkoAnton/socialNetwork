@@ -107,27 +107,22 @@ export const getUsers = (usersOnPage, currentUsersPage) => {
 }
 
 export const toggleFollow = (userFollowed, userId) => {
-    return dispatch => {
+    return async (dispatch) => {
         dispatch(toggleIsFollowingProgress(true, userId))
-        userAPI.toggleFollow(userFollowed, userId)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(toggleFollowSucess(userId))
-                    dispatch(toggleIsFollowingProgress(false, userId))
-                }
-            }
-            )
+        let response = await userAPI.toggleFollow(userFollowed, userId)
+        if (response.data.resultCode === 0) {
+            dispatch(toggleFollowSucess(userId))
+            dispatch(toggleIsFollowingProgress(false, userId))
+        }
+
     }
 }
 
 export const changePage = (usersOnPage, selectedPage) => {
-    return dispatch => {
-
-        userAPI.getUsers(usersOnPage, selectedPage)
-            .then(response => {
-                dispatch(TogleIsFetching(false))
-                dispatch(setUsers(response.data.items))
-            })
+    return async (dispatch) => {
+        let response = await userAPI.getUsers(usersOnPage, selectedPage)
+        dispatch(TogleIsFetching(false))
+        dispatch(setUsers(response.data.items))
     }
 }
 

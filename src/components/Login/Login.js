@@ -51,9 +51,6 @@ const Login = () => {
 						</form>
 					</div>
 				)}
-
-
-
 			</Formik>
 		</div>
 	)

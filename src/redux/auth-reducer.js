@@ -34,15 +34,13 @@ export const setAuthUser = ({ id, login, email }) => {
 }
 
 export const getAndSetAuthUser = () => {
-    return dispatch => {
-        authAPI.setAuthUser()
-            .then(response => {
-                if (response.data.resultCode == 0) {
-                    dispatch(setAuthUser(response.data.data))
-                }
-            }
-            )
+    return async (dispatch) => {
+        let response = await authAPI.setAuthUser()
+        if (response.data.resultCode == 0) {
+            dispatch(setAuthUser(response.data.data))
+        }
     }
+
 }
 
 
