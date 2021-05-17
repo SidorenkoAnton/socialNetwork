@@ -26,6 +26,7 @@ const ProfilePostInputForm = (props) => {
 		<Formik
 			initialValues={{}}
 			onSubmit={(value) => props.addPost(value.profilePostInput)}
+			validate={(values) => console.log(values)}
 		>
 			{({ values, handleSubmit, handleChange }) => (
 				<form onSubmit={handleSubmit}>
@@ -41,7 +42,7 @@ const ProfilePostInputForm = (props) => {
 					</div>
 				</form>
 			)}
-		</Formik>
+		</Formik >
 	)
 }
 
