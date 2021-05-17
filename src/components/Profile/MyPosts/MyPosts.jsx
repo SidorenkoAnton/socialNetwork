@@ -1,41 +1,47 @@
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
 import React from 'react'
+import { Formik } from 'formik'
 
 
 
 const MyPosts = (props) => {
 	let postsElements = props.state.posts.map(post => <Post key={post.id} massage={post.massage} likeCounts={post.likeCounts} />)
-	let newPostElement = React.createRef()
-
-	let onAddPost = () => {
-		props.addPost()
-		newPostElement.current.value = ''
-	}
-
-
-	let onNewPostText = () => {
-		let newText = newPostElement.current.value
-		props.updateNewPostText(newText)
-
-	}
-
 	return (
 		<div className={s.postsBlock}>
 			<h3>My posts</h3>
 			<div>
-				<div className="">
-					<textarea onChange={onNewPostText} ref={newPostElement} name="" id="" cols="30" rows="10" value={props.newPostText}></textarea>
-				</div>
-				<div className="">
-					<button onClick={onAddPost}>add Post</button>
-				</div>
+				<ProfilePostInputForm addPost={props.addPost} />
 			</div>
 			<div className={s.posts}>
 				{postsElements}
 			</div>
 		</div>
 
+	)
+}
+
+const ProfilePostInputForm = (props) => {
+	return (
+		<Formik
+			initialValues={{}}
+			onSubmit={(value) => props.addPost(value.profilePostInput)}
+		>
+			{({ values, handleSubmit, handleChange }) => (
+				<form onSubmit={handleSubmit}>
+					<div className="">
+						<textarea onChange={handleChange}
+							name="profilePostInput"
+							cols="30"
+							rows="10"
+						/>
+					</div>
+					<div className="">
+						<button >add Post</button>
+					</div>
+				</form>
+			)}
+		</Formik>
 	)
 }
 

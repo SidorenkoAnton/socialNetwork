@@ -4,6 +4,7 @@ import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem'
 import Massage from './Masage/Massage'
 import { Redirect } from 'react-router-dom'
+import { Formik } from 'formik'
 
 
 
@@ -16,16 +17,15 @@ const Dialogs = (props) => {
 	let massagesElements = state.massages.map(massage => <Massage massage={massage.massage} />)
 
 
-	let onNewMassageChange = (e) => {
-		let body = e.target.value
-		props.newMassageChange(body)
+	/* 	let onNewMassageChange = (e) => {
+			let body = e.target.value
+			props.newMassageChange(body)
+	
+		} */
 
-	}
-
-	let onSandMassageClick = () => {
+	/* let onSandMassageClick = () => {
 		props.sandMassageClick()
-	}
-
+	} */
 
 	return (
 		<div className={s.dialogs}>
@@ -35,12 +35,35 @@ const Dialogs = (props) => {
 			<div className={s.massages}>
 				<div>{massagesElements}</div>
 				<div>
-					<div><input type="text" onChange={onNewMassageChange} value={state.newMassageBody} /></div>
-					<div><button onClick={onSandMassageClick}>Send Massage</button></div>
+					<DialogsInputForm sendMassage={props.sendMassage} />
 				</div>
 
 			</div>
 		</div>
 	)
 }
+
+const DialogsInputForm = (props) => {
+
+
+	return (
+		<Formik
+			initialValues={{}}
+			onSubmit={(value) => props.sendMassage(value.massageBody)}
+
+		>
+			{({ handleSubmit, values, handleChange }) => (
+				<form onSubmit={handleSubmit}>
+					<textarea
+						type='text'
+						name='massageBody'
+						onChange={handleChange}
+						value={values.massageBody} />
+					<button type='submit'>Send</button>
+				</form>
+			)}
+		</Formik >
+	)
+}
+
 export default Dialogs

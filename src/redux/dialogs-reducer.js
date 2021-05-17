@@ -1,6 +1,6 @@
 
 const SEND_MASSAGE = 'SEND-MASSAGE'
-const UPDATE_NEW_MASSAGE_BODY = 'UPDATE-NEW-MASSAGE-BODY'
+
 
 let initialState = {
 	dialogs: [
@@ -22,19 +22,13 @@ let initialState = {
 const dialogsReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case SEND_MASSAGE:
-			let body = state.newMassageBody
 			return {
 				...state,
-				massages: [...state.massages, { id: 6, massage: body }],
+				massages: [...state.massages, { id: 6, massage: action.massageBody }],
 				newMassageBody: ''
 			}
 
-		case UPDATE_NEW_MASSAGE_BODY:
 
-			return {
-				...state,
-				newMassageBody: action.body
-			}
 		default:
 			return state
 
@@ -42,13 +36,11 @@ const dialogsReducer = (state = initialState, action) => {
 }
 
 
-export let sendMassageCreator = () => {
-	return { type: SEND_MASSAGE }
+export let sendMassage = (massageBody) => {
+	return { type: SEND_MASSAGE, massageBody }
 }
 
-export let updateNewMassageBodyCreator = (body) => {
-	return ({ type: UPDATE_NEW_MASSAGE_BODY, body: body })
-}
+
 
 export default dialogsReducer;
 
