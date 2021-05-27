@@ -12,14 +12,13 @@ const Header = (props) => {
 			</div>
 			<div className={s.header__item}>
 				<div className={s.header__login}>
-					{props.isAuth ? props.login :
+					{props.isAuth ? <div><div>{props.login}</div> <button onClick={props.logoutUser}>Logout</button></div> :
 						<NavLink to='/login'>
 							login
 					</NavLink>}
-
 				</div>
 			</div>
-		</header>
+		</header >
 	)
 }
 

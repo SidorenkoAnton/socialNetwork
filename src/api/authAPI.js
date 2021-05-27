@@ -6,5 +6,7 @@ const instance = axios.create({
 })
 
 export const authAPI = {
-	setAuthUser: () => instance.get(`auth/me`)
+	setAuthUser: () => instance.get(`auth/me`),
+	login: (email, password, rememberMe) => instance.post('auth/login', { email, password, rememberMe }),
+	logout: () => instance.delete('auth/login'),
 }
