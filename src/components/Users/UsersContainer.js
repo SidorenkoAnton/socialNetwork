@@ -19,17 +19,19 @@ class UsersContainer extends React.Component {
 
 
     render() {
-        return (<Users totalUsersCount={this.props.totalUsersCount}
-            usersOnPage={this.props.usersOnPage}
-            currentUsersPage={this.props.currentUsersPage}
-            onChangePage={this.onChangePage}
-            state={this.props.state}
-            toggleFollowSucess={this.props.toggleFollowSucess}
-            isFetching={this.props.isFetching}
-            toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
-            toggleFollowingProgress={this.props.toggleFollowingProgress}
-            toggleFollow={this.props.toggleFollow}
-        />
+        return (
+            <Users
+                totalUsersCount={this.props.totalUsersCount}
+                usersOnPage={this.props.usersOnPage}
+                currentUsersPage={this.props.currentUsersPage}
+                onChangePage={this.onChangePage}
+                state={this.props.state}
+                toggleFollowSucess={this.props.toggleFollowSucess}
+                isFetching={this.props.isFetching}
+                toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
+                toggleFollowingProgress={this.props.toggleFollowingProgress}
+                toggleFollow={this.props.toggleFollow}
+            />
         )
     }
 }

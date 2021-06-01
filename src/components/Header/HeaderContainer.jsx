@@ -8,9 +8,9 @@ import { setAuthUser, getAndSetAuthUser, logoutUser } from './../../redux/auth-r
 
 class HeaderContainer extends React.Component {
 
-	componentDidMount() {
+	/* componentDidMount() {
 		this.props.getAndSetAuthUser()
-	}
+	} */
 
 	render() {
 		return (

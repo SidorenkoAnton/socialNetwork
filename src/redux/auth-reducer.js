@@ -40,6 +40,7 @@ export const getAndSetAuthUser = () => {
             let { id, login, email } = response.data.data
             dispatch(setAuthUser(id, login, email, true))
         }
+        return response
     }
 }
 

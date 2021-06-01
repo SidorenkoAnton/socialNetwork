@@ -10,6 +10,12 @@ import Settings from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersContainer';
 import Login from './components/Login/Login'
 import { BrowserRouter, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getAndSetAuthUser } from './redux/auth-reducer';
+import { getInitializedData } from './redux/app-reducer';
+import Preloader from './components/Common/Preloader/Preloader';
+
 
 
 
@@ -20,8 +26,12 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 const App = (props) => {
 
-  return (
+  useEffect(() => {
+    props.getInitializedData()
+  })
 
+
+  return (<div>{props.isInitialized ?
     <div className='app-wrapper'>
       <HeaderContainer />
       <Navbar />
@@ -34,11 +44,19 @@ const App = (props) => {
         <Route path='/users' render={() => <UsersContainer />} />
         <Route path='/login' render={() => <Login />} />
       </div>
-    </div>
+    </div> : <Preloader />
+  }
+  </div>
 
   )
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isInitialized: state.app.isInitialized
+  }
+}
+
+export default connect(mapStateToProps, { getInitializedData })(App);
 
 
