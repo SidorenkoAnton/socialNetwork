@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from "react-redux"
 import { toggleFollowSucess, setCurrentPage, TogleIsFetching, toggleIsFollowingProgress, getUsers, toggleFollow, changePage } from "../../redux/users-reducer"
+import { getCurrentUsersPage, getFollowingIsProgress, getIsFetching, getItem, getToggleFollowingProgress, getTotalUsersCount, getUsersOnPage } from '../../redux/users-selector'
 import Users from "./Users"
 
 
@@ -19,13 +20,14 @@ class UsersContainer extends React.Component {
 
 
     render() {
+
         return (
             <Users
                 totalUsersCount={this.props.totalUsersCount}
                 usersOnPage={this.props.usersOnPage}
                 currentUsersPage={this.props.currentUsersPage}
                 onChangePage={this.onChangePage}
-                state={this.props.state}
+                items={this.props.items}
                 toggleFollowSucess={this.props.toggleFollowSucess}
                 isFetching={this.props.isFetching}
                 toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
@@ -40,12 +42,13 @@ class UsersContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        state: state.usersPage,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentUsersPage: state.usersPage.currentUsersPage,
-        usersOnPage: state.usersPage.usersOnPage,
-        followingIsProgress: state.usersPage.followingIsProgress,
-        toggleFollowingProgress: state.usersPage.toggleFollowingProgress
+        items: getItem(state),
+        isFetching: getIsFetching(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentUsersPage: getCurrentUsersPage(state),
+        usersOnPage: getUsersOnPage(state),
+        followingIsProgress: getFollowingIsProgress(state),
+        toggleFollowingProgress: getToggleFollowingProgress(state)
     }
 
 }

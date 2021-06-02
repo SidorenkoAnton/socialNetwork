@@ -37,8 +37,8 @@ let Users = (props) => {
                             <div className={props.currentUsersPage === num ? s.paginationItemActive : s.paginationItem} onClick={(e) => { props.onChangePage(arrPages.length) }}>{arrPages.length}</div>
                         </div>)}
             </div>
-            {props.state.isFetching ? <Preloader /> :
-                props.state.items.map(user => (
+            {props.isFetching ? <Preloader /> :
+                props.items.map(user => (
                     <div className={s.usersWrapper} key={user.id}>
                         <div className={s.usersLeft}>
                             <div className={s.usersAvatar}>

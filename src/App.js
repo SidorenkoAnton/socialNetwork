@@ -31,7 +31,8 @@ const App = (props) => {
   })
 
 
-  return (<div>{props.isInitialized ?
+  return (<div>
+    {props.isInitialized ?
     <div className='app-wrapper'>
       <HeaderContainer />
       <Navbar />
