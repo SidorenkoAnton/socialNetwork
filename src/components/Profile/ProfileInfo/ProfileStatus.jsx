@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import s from './ProfileInfo.module.css'
 
 
@@ -8,6 +8,10 @@ const ProfileStatus = (props) => {
 
 	const [status, setStatus] = useState(props.status)
 	const [editMode, setEditMode] = useState(false)
+
+	useEffect(() => {
+		setStatus(props.status)
+	}, [props.status])
 
 	const toggleEditMode = () => {
 		setEditMode(!editMode)
