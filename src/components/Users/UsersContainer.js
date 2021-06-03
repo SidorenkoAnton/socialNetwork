@@ -20,6 +20,7 @@ class UsersContainer extends React.Component {
 
 
     render() {
+        console.log('RENDER');
         return (
             <Users
                 totalUsersCount={this.props.totalUsersCount}
@@ -40,6 +41,7 @@ class UsersContainer extends React.Component {
 
 
 let mapStateToProps = (state) => {
+    console.log('MAP');
     return {
         items: getItem(state),
         isFetching: getIsFetching(state),

@@ -9,7 +9,7 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersContainer';
 import Login from './components/Login/Login'
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getInitializedData, } from './redux/app-reducer';
@@ -18,13 +18,7 @@ import Preloader from './components/Common/Preloader/Preloader';
 
 
 
-
-
-
-
-
 const App = (props) => {
-
 
   useEffect(() => {
     props.getInitializedData()

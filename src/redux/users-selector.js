@@ -4,6 +4,7 @@ import { createSelector } from "reselect"
 export const getItemsSelector = (state) => {
     return state.usersPage.items
 }
+
 export const getItem = createSelector(getItemsSelector, (items) => {
     return items.filter(el => true)
 })

@@ -10,6 +10,7 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS'
 
 
 
+
 let initialState = {
     items: [],
     usersOnPage: 7,
@@ -18,7 +19,8 @@ let initialState = {
     currentUsersPage: 1,
     isFetching: false,
     followingIsProgress: false,
-    toggleFollowingProgress: []
+    toggleFollowingProgress: [],
+
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -61,6 +63,7 @@ const usersReducer = (state = initialState, action) => {
                 followingIsProgress: action.followingIsProgress,
                 toggleFollowingProgress: state.followingIsProgress ? state.toggleFollowingProgress.filter(id => id != action.isFetchingId) : [...state.toggleFollowingProgress, action.isFetchingId]
             }
+
         default:
             return state
     }
@@ -92,6 +95,8 @@ export const TogleIsFetching = (isFetching) => {
 export const toggleIsFollowingProgress = (followingIsProgress, isFetchingId) => {
     return { type: TOGGLE_IS_FOLLOWING_PROGRESS, followingIsProgress, isFetchingId }
 }
+
+
 
 
 export const getUsers = (usersOnPage, currentUsersPage) => {
