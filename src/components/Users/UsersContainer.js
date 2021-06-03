@@ -20,7 +20,6 @@ class UsersContainer extends React.Component {
 
 
     render() {
-
         return (
             <Users
                 totalUsersCount={this.props.totalUsersCount}

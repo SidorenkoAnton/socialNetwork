@@ -7,6 +7,7 @@ const SET_INITIALIZED = 'SET_INITIALIZED'
 
 
 
+
 let initialState = {
     isInitialized: false,
 }
@@ -29,6 +30,8 @@ const appReducer = (state = initialState, action) => {
 export const setInitialized = () => {
     return { type: SET_INITIALIZED, }
 }
+
+
 
 export const getInitializedData = () => {
     return async (dispatch) => {

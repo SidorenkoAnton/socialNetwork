@@ -14,8 +14,6 @@ let Users = (props) => {
     for (let i = 1; i <= pages; i++) {
         arrPages.push(i)
     }
-
-
     return (
         <div className={s.usersPageWrapper} >
             <div className={s.switchPageButtonsRow}>

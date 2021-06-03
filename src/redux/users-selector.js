@@ -1,7 +1,12 @@
+import { createSelector } from "reselect"
 
-export const getItem = (state) => {
+
+export const getItemsSelector = (state) => {
     return state.usersPage.items
 }
+export const getItem = createSelector(getItemsSelector, (items) => {
+    return items.filter(el => true)
+})
 
 export const getIsFetching = (state) => {
     return state.usersPage.isFetching
