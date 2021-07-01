@@ -5,24 +5,12 @@ import MyPosts from './MyPosts'
 
 
 const mapStateToProps = (state) => {
-
     return {
-        state: state.profilePage,
+        posts: state.profilePage.posts,
         newPostText: state.profilePage.newPostText
     }
 }
 
-/* const mapDispatchToProps = (dispatch) => {
-    return {
-        addPost: () => {
-            dispatch(addPostActionCreator())
-        },
-        updateNewPostText: (newText) => {
-            let action = updateNewPostTextActionCreator(newText)
-            dispatch(action)
-        }
-    }
-} */
 
 const MyPostsContainer = connect(mapStateToProps, { addPost })(MyPosts)
 

@@ -6,7 +6,8 @@ import { Formik } from 'formik'
 
 
 const MyPosts = (props) => {
-	let postsElements = props.state.posts.map(post => <Post key={post.id} massage={post.massage} likeCounts={post.likeCounts} />)
+	console.log('RENDER');
+	let postsElements = props.posts.map(post => <Post key={post.id} massage={post.massage} likeCounts={post.likeCounts} />)
 	return (
 		<div className={s.postsBlock}>
 			<h3>My posts</h3>
@@ -22,6 +23,7 @@ const MyPosts = (props) => {
 }
 
 const ProfilePostInputForm = (props) => {
+
 	return (
 		<Formik
 			initialValues={{}}

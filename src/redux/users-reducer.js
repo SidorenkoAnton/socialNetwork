@@ -133,10 +133,4 @@ export const changePage = (usersOnPage, selectedPage) => {
 
 
 
-
-
-
-
-
-
 export default usersReducer

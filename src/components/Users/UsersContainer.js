@@ -41,7 +41,6 @@ class UsersContainer extends React.Component {
 
 
 let mapStateToProps = (state) => {
-    console.log('MAP');
     return {
         items: getItem(state),
         isFetching: getIsFetching(state),
