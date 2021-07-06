@@ -53,6 +53,12 @@ const mapStateToProps = (state) => {
   }
 }
 
+const AppWithRouter = () => {
+
+}
+
+
+
 export default connect(mapStateToProps, { getInitializedData })(App);
 
 
