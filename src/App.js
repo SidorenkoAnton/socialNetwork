@@ -9,22 +9,21 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersContainer';
 import Login from './components/Login/Login'
-import { Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 import { getInitializedData, } from './redux/app-reducer';
 import Preloader from './components/Common/Preloader/Preloader';
+import store from './redux/redux-store';
 
 
 
 
 const App = (props) => {
-
   useEffect(() => {
     props.getInitializedData()
 
   })
-
 
   return (<div>
     {props.isInitialized ?
@@ -53,12 +52,18 @@ const mapStateToProps = (state) => {
   }
 }
 
-const AppWithRouter = () => {
 
+const AppContainer = connect(mapStateToProps, { getInitializedData })(App);
+
+
+const MainApp = () => {
+  return (
+    <BrowserRouter>
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    </BrowserRouter>
+  )
 }
 
-
-
-export default connect(mapStateToProps, { getInitializedData })(App);
-
-
+export default MainApp

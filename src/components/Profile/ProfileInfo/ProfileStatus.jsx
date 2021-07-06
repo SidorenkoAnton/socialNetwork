@@ -28,7 +28,7 @@ const ProfileStatus = (props) => {
 				<div className={s.descriptionBlock__about_item}>Статус:</div> {editMode ?
 					<input onChange={(e) => changedStatus(e.target.value)} autoFocus={true} onBlur={toggleEditMode} value={status} />
 					: <span onDoubleClick={toggleEditMode}>{props.status ? props.status : 'Статус'}</span>}
-				<div className={s.descriptionBlock__about_item}>Имя:</div>  {props.profile.fullName}
+				<div className={s.descriptionBlock__about_item}>Имя:</div>  {props.fullName}
 			</div>
 		</div >
 	)
