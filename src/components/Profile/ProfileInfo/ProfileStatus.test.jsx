@@ -1,5 +1,7 @@
 import React from 'react'
 import TestRenderer, { act } from 'react-test-renderer'
+import { compose } from 'redux'
+import { updateStatus } from '../../../redux/profile-reducer'
 import ProfileStatus from './ProfileStatus'
 
 describe('test profileStatus page', () => {
@@ -17,6 +19,17 @@ describe('test profileStatus page', () => {
 			const input = root.findByType('input')
 		}).toThrow()
 
+	})
+	test('input should be displayed in EditMode', () => {
+		const component = TestRenderer.create(<ProfileStatus status='testStatus' updateStatus={updateStatus} />)
+		const root = component.root
+		let span = root.findByType('span')
+		act(() => {
+			span.props.onDoubleClick()
+		})
+		expect(() => {
+			let input = root.findByType('input')
+		}).not.toThrow()
 	})
 
 })

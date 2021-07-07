@@ -16,6 +16,8 @@ const ProfileStatus = (props) => {
 	const toggleEditMode = () => {
 		setEditMode(!editMode)
 		props.updateStatus(status)
+
+
 	}
 
 	const changedStatus = (value) => {
