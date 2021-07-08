@@ -1,13 +1,14 @@
 import Preloader from '../../Common/Preloader/Preloader';
+import React from 'react'
 import s from './ProfileInfo.module.css'
 import ProfileStatus from './ProfileStatus';
+import { compose } from 'redux';
 
 
 const ProfileInfo = (props) => {
 	if (!props.profile) {
 		return <Preloader />
 	}
-
 
 	return (
 		<div >
@@ -25,4 +26,5 @@ const ProfileInfo = (props) => {
 	)
 }
 
-export default ProfileInfo;
+
+export default compose(React.memo)(ProfileInfo);
