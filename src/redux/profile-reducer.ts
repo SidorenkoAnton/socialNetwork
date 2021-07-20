@@ -5,17 +5,47 @@ const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
 
+
+type InitialStatePostsType = {
+	id: number
+	massage: string
+	likeCounts: number
+}
+
+type InitialStateProfileType = {
+	userId: number
+	lookingForAJob: boolean
+	lookingForAJobDescription: string
+	fullName: string
+	contacts: {
+		github: string
+		vk: string
+		facebook: string
+		instagram: string
+		twitter: string
+		website: string
+		youtube: string
+		mainLink: string
+	}
+	photos: {
+		small: string
+		large: string
+	}
+}
+
 let initialState = {
 	posts: [
 		{ id: 1, massage: 'hi man', likeCounts: 3 },
 		{ id: 2, massage: 'watsap', likeCounts: 6 },
-	],
-	newPostText: 'it-camasutra',
-	profile: null,
-	status: ''
+	] as Array<InitialStatePostsType>,
+	newPostText: 'it-camasutra' as string,
+	profile: null as InitialStateProfileType | null,
+	status: '' as string
 }
 
-const profileReducer = (state = initialState, action) => {
+type InitialStateType = typeof initialState
+
+const profileReducer = (state: InitialStateType = initialState, action: any) => {
 	switch (action.type) {
 		case ADD_POST:
 			let newPost = {
@@ -44,32 +74,49 @@ const profileReducer = (state = initialState, action) => {
 
 }
 
-export let addPost = (massageBody) => {
+type AddPostActionType = {
+	type: typeof ADD_POST
+	massageBody: string
+}
+
+export let addPost = (massageBody: string): AddPostActionType => {
 	return { type: ADD_POST, massageBody }
 }
 
-export let updateNewPostTextActionCreator = (newText) => {
-	return { type: UPDATE_NEW_POST_TEXT, newText: newText }
+type updateNewPostTextActionCreatorActionType = {
+	type: typeof UPDATE_NEW_POST_TEXT
+	newText: string
 }
 
-export let setUserProfile = (profile) => {
+export let updateNewPostTextActionCreator = (newText: string): updateNewPostTextActionCreatorActionType => {
+	return { type: UPDATE_NEW_POST_TEXT, newText }
+}
+
+type SetUserProfileActionType = {
+	type: typeof SET_USER_PROFILE
+	profile: InitialStateProfileType
+}
+
+export let setUserProfile = (profile: InitialStateProfileType): SetUserProfileActionType => {
 	return { type: SET_USER_PROFILE, profile }
 }
 
-export const getProfile = (userId) => dispatch => {
+
+
+export const getProfile = (userId: number) => (dispatch: any) => {
 	profileAPI.getProfile(userId)
 		.then(response => dispatch(setUserProfile(response.data)))
 }
 
-export let setStatus = (status) => {
+export let setStatus = (status: string) => {
 	return { type: SET_STATUS, status }
 }
 
-export const getStatus = (userId) => async (dispatch) => {
+export const getStatus = (userId: number) => async (dispatch: any) => {
 	let response = await profileAPI.getStatus(userId)
 	dispatch(setStatus(response.data))
 }
-export const updateStatus = (status) => async dispatch => {
+export const updateStatus = (status: string) => async (dispatch: any) => {
 	let response = await profileAPI.updateStatus(status)
 	if (response.data.resultCode === 0) {
 		dispatch(setStatus(status))
