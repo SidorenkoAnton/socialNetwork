@@ -24,7 +24,7 @@ export const example = {
   second: '2'
 }
 
-export const testContext = React.createContext()
+
 
 const App = (props) => {
   useEffect(() => {
@@ -33,33 +33,33 @@ const App = (props) => {
   })
 
   return (
-    <testContext.Provider value={example}>
-      <div>
 
-        {props.isInitialized ?
-          <div className='app-wrapper'>
-            <HeaderContainer />
-            <Navbar />
-            <div className='app-wrapper-content'>
-              <Route path='/dialogs' render={() => {
-                return (
-                  <React.Suspense fallback={<Preloader />}>
-                    <DialogsContainer />
-                  </React.Suspense>
-                )
-              }} />
-              <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
-              <Route path='/news' render={() => <News />} />
-              <Route path='/music' render={() => <Music />} />
-              <Route path='/settings' render={() => <Settings />} />
-              <Route path='/users' render={() => <UsersContainer />} />
-              <Route path='/login' render={() => <Login />} />
-            </div>
-          </div> : <Preloader />
-        }
+    <div>
 
-      </div>
-    </testContext.Provider>
+      {props.isInitialized ?
+        <div className='app-wrapper'>
+          <HeaderContainer />
+          <Navbar />
+          <div className='app-wrapper-content'>
+            <Route path='/dialogs' render={() => {
+              return (
+                <React.Suspense fallback={<Preloader />}>
+                  <DialogsContainer />
+                </React.Suspense>
+              )
+            }} />
+            <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+            <Route path='/news' render={() => <News />} />
+            <Route path='/music' render={() => <Music />} />
+            <Route path='/settings' render={() => <Settings />} />
+            <Route path='/users' render={() => <UsersContainer />} />
+            <Route path='/login' render={() => <Login />} />
+          </div>
+        </div> : <Preloader />
+      }
+
+    </div>
+
 
   )
 }

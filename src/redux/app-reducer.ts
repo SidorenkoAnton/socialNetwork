@@ -3,16 +3,15 @@ import { getAndSetAuthUser } from "./auth-reducer"
 
 const SET_INITIALIZED = 'SET_INITIALIZED'
 
+export type initialStateType = {
+    isInitialized: boolean,
+}
 
-
-
-
-
-let initialState = {
+let initialState: initialStateType = {
     isInitialized: false,
 }
 
-const appReducer = (state = initialState, action) => {
+const appReducer = (state = initialState, action: any) => {
 
     switch (action.type) {
         case SET_INITIALIZED:
@@ -27,15 +26,18 @@ const appReducer = (state = initialState, action) => {
 
 }
 
+type setInitializedActionType = {
+    type: typeof SET_INITIALIZED
+}
 
-export const setInitialized = () => {
+export const setInitialized = (): setInitializedActionType => {
     return { type: SET_INITIALIZED, }
 }
 
 
 
 export const getInitializedData = () => {
-    return async (dispatch) => {
+    return async (dispatch: any) => {
         let result = await dispatch(getAndSetAuthUser())
         dispatch(setInitialized())
 
