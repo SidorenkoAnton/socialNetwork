@@ -4,11 +4,11 @@ import { array, string } from "yup/lib/locale"
 const SEND_MASSAGE = 'SEND-MASSAGE'
 
 
-type InitialStateDialogsType = {
+export type InitialStateDialogsType = {
 	id: number
 	name: string
 }
-type InitialStateMassagesType = {
+export type InitialStateMassagesType = {
 	id: number
 	massage: string
 }
@@ -45,7 +45,7 @@ const dialogsReducer = (state: InitialStateType = initialState, action: any): In
 
 	}
 }
-type SendMassageActionType = {
+export type SendMassageActionType = {
 	type: typeof SEND_MASSAGE
 	massageBody: string
 }
