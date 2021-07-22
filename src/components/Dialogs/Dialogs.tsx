@@ -5,20 +5,11 @@ import DialogItem from './DialogItem/DialogItem'
 import Massage from './Masage/Massage'
 import { Redirect } from 'react-router-dom'
 import { Formik } from 'formik'
-import type { SendMassageActionType, InitialStateDialogsType, InitialStateMassagesType } from '../../redux/dialogs-reducer'
-
-type MapStateToPropsType = {
-	dialogs: Array<InitialStateDialogsType>
-	massages: Array<InitialStateMassagesType>
-}
-type MapDispatchToProps = {
-	sendMassage: (massageBody: string) => void
-}
-
-type PropsType = MapStateToPropsType & MapDispatchToProps
+import { DialogsPropsFromReduxType } from './DialogsContainer'
 
 
-const Dialogs = (props: PropsType) => {
+
+const Dialogs = (props: DialogsPropsFromReduxType) => {
 
 
 	let dialogElements = props.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id} />)
@@ -44,12 +35,11 @@ const Dialogs = (props: PropsType) => {
 type FormValuesType = {
 	massageBody: string
 }
-
-type InputFormType = {
+type InputCallbackFormType = {
 	sendMassage: (massageBody: string) => void
 }
 
-const DialogsInputForm = (props: InputFormType) => {
+const DialogsInputForm = (props: InputCallbackFormType) => {
 
 
 	const formInitialValues: FormValuesType = { massageBody: '' }
@@ -61,7 +51,6 @@ const DialogsInputForm = (props: InputFormType) => {
 			{({ handleSubmit, values, handleChange }) => (
 				<form onSubmit={handleSubmit}>
 					<textarea
-						/* type='text' */
 						name='massageBody'
 						onChange={handleChange}
 						value={values.massageBody} />

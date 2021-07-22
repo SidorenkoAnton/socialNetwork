@@ -29,7 +29,7 @@ let initialState = {
 	newMassageBody: ''
 }
 
-type InitialStateType = typeof initialState
+export type InitialStateType = typeof initialState
 
 
 const dialogsReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {

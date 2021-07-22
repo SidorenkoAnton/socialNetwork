@@ -1,9 +1,13 @@
-import { NavLink } from 'react-router-dom'
+import React from 'react'
 import s from './../Dialogs.module.css'
 
 
+interface MassagePropsType {
+	massage: string
+}
 
-const Massage = (props) => {
+
+const Massage = (props: MassagePropsType) => {
 	return (
 		<div className={s.massage}>
 			{props.massage}
