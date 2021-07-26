@@ -6,13 +6,13 @@ const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
 
 
-type InitialStatePostsType = {
+export type InitialStatePostsType = {
 	id: number
 	massage: string
 	likeCounts: number
 }
 
-type InitialStateProfileType = {
+export type InitialStateProfileType = {
 	userId: number
 	lookingForAJob: boolean
 	lookingForAJobDescription: string
