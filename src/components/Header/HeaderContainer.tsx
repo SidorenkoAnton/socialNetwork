@@ -1,9 +1,8 @@
 import React from 'react'
 import Header from './Header'
-import * as axios from 'axios'
 import { connect, ConnectedProps } from 'react-redux'
 import { AppStateType } from '../../redux/redux-store'
-import { setAuthUser, getAndSetAuthUser, logoutUser } from '../../redux/auth-reducer'
+import { getAndSetAuthUser, logoutUser } from '../../redux/auth-reducer'
 
 
 interface HeaderMapStateToProps {
