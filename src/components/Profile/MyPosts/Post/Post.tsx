@@ -1,6 +1,13 @@
+import React from 'react'
 import s from './Post.module.css'
 
-const Post = (props) => {
+interface PostPropsType {
+	massage: string
+	likeCounts: number
+	key: number
+}
+
+const Post = (props: PostPropsType) => {
 
 	return (
 		<div className={s.item}>

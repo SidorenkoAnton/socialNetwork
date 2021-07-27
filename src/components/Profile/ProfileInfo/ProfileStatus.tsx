@@ -2,12 +2,16 @@
 import React, { useEffect, useState } from 'react'
 import s from './ProfileInfo.module.css'
 
+interface ProfileStatusPropsType {
+	status: string
+	fullName: string
+	updateStatus: (status: string) => void
+}
 
+const ProfileStatus: React.FC<ProfileStatusPropsType> = (props) => {
 
-const ProfileStatus = (props) => {
-
-	const [status, setStatus] = useState(props.status)
-	const [editMode, setEditMode] = useState(false)
+	const [status, setStatus] = useState<string>(props.status)
+	const [editMode, setEditMode] = useState<boolean>(false)
 
 	useEffect(() => {
 		setStatus(props.status)
@@ -18,7 +22,7 @@ const ProfileStatus = (props) => {
 		props.updateStatus(status)
 	}
 
-	const changedStatus = (value) => {
+	const changedStatus = (value: string) => {
 		setStatus(value)
 	}
 
